@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import { Mail, Send, CheckCircle, AlertCircle, ArrowLeft, Clock } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
-import { projectId, publicAnonKey } from '../utils/supabase/info';
+import { useState } from "react";
+import {
+  Mail,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  ArrowLeft,
+  Clock,
+} from "lucide-react";
+import { toast } from "sonner@2.0.3";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 export default function RequestVerification() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [requestSent, setRequestSent] = useState(false);
 
@@ -12,14 +19,14 @@ export default function RequestVerification() {
     e.preventDefault();
 
     if (!email.trim()) {
-      toast.error('Please enter your email address');
+      toast.error("Please enter your email address");
       return;
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      toast.error('Please enter a valid email address');
+      toast.error("Please enter a valid email address");
       return;
     }
 
@@ -29,32 +36,34 @@ export default function RequestVerification() {
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f9be53a7/api/public/legacy-access/request-verification`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${publicAnonKey}`,
           },
           body: JSON.stringify({ email: email.trim().toLowerCase() }),
-        }
+        },
       );
 
       const data = await response.json();
 
       if (!response.ok) {
         if (response.status === 429) {
-          toast.error(data.error || 'Too many requests. Please try again tomorrow.');
+          toast.error(
+            data.error || "Too many requests. Please try again tomorrow.",
+          );
         } else {
-          toast.error(data.error || 'Failed to send verification link');
+          toast.error(data.error || "Failed to send verification link");
         }
         return;
       }
 
       // Success
       setRequestSent(true);
-      toast.success('Request sent! Check your email.');
+      toast.success("Request sent! Check your email.");
     } catch (error) {
-      console.error('Error requesting verification:', error);
-      toast.error('Failed to send request. Please try again.');
+      console.error("Error requesting verification:", error);
+      toast.error("Failed to send request. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -73,11 +82,10 @@ export default function RequestVerification() {
             </div>
 
             {/* Success Message */}
-            <h1 className="text-center text-white mb-3">
-              Check Your Email
-            </h1>
+            <h1 className="text-center text-white mb-3">Check Your Email</h1>
             <p className="text-center text-slate-400 mb-6">
-              If your email is registered as a beneficiary, you'll receive a new verification link shortly.
+              If your email is registered as a beneficiary, you'll receive a new
+              verification link shortly.
             </p>
 
             {/* Info Card */}
@@ -102,7 +110,9 @@ export default function RequestVerification() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-amber-200">
-                  You can request a new link up to <strong>3 times per day</strong>. If you need additional help, please contact support.
+                  You can request a new link up to{" "}
+                  <strong>3 times per day</strong>. If you need additional help,
+                  please contact support.
                 </p>
               </div>
             </div>
@@ -144,7 +154,8 @@ export default function RequestVerification() {
             Request Verification Link
           </h1>
           <p className="text-center text-slate-400 mb-8">
-            Enter your email to receive a new legacy beneficiary verification link
+            Enter your email to receive a new legacy beneficiary verification
+            link
           </p>
 
           {/* Info Card */}
@@ -156,7 +167,8 @@ export default function RequestVerification() {
                   <strong>Why am I here?</strong>
                 </p>
                 <p className="text-sm text-indigo-300/80">
-                  If you've been designated as a legacy beneficiary and lost your verification email, use this page to request a new link.
+                  If you've been designated as a legacy beneficiary and lost
+                  your verification email, use this page to request a new link.
                 </p>
               </div>
             </div>
@@ -165,7 +177,10 @@ export default function RequestVerification() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm text-slate-300 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm text-slate-300 mb-2"
+              >
                 Email Address
               </label>
               <input
@@ -207,15 +222,21 @@ export default function RequestVerification() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                <span className="text-slate-400">No expiration - verify anytime</span>
+                <span className="text-slate-400">
+                  No expiration - verify anytime
+                </span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                <span className="text-slate-400">Secure rate limiting (3 requests/day)</span>
+                <span className="text-slate-400">
+                  Secure rate limiting (3 requests/day)
+                </span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                <span className="text-slate-400">Privacy protected - we don't reveal if email exists</span>
+                <span className="text-slate-400">
+                  Privacy protected - we don't reveal if email exists
+                </span>
               </div>
             </div>
           </div>
@@ -235,8 +256,11 @@ export default function RequestVerification() {
         {/* Additional Help */}
         <div className="mt-6 text-center">
           <p className="text-sm text-slate-500">
-            Need help?{' '}
-            <a href="mailto:support@erastimecapsule.com" className="text-indigo-400 hover:text-indigo-300">
+            Need help?{" "}
+            <a
+              href="mailto:support@erastimecapsule.com"
+              className="text-indigo-400 hover:text-indigo-300"
+            >
               Contact Support
             </a>
           </p>

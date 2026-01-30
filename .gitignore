@@ -1,16 +1,145 @@
-# Node.js
-node_modules/
-dist/
-.env
-
-# Python
-__pycache__/
-*.pyc
-.env
-
 # Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production
+build/
+dist/
+.next/
+.out/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files
+.env
+.env.*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Supabase
+.supabase/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+
+# Misc
+*.pem
+*.p12
+*.crt
+*.key
+*.csr
+*.cer
+*.sst
+*.pfx
+*.p7b
+*.p7c
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+*.p7m
+*.p7r
+*.p7s
+
+# vue-cli build output
+dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VS Code state settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/stylelint.json
 
 # OS files
 .DS_Store
 Thumbs.db
+
+# Vite build output
+dist/
+dist-ssr/
+*.local
+
+# Vercel
+.vercel

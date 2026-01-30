@@ -102,6 +102,7 @@ import { MetaTags } from "./components/MetaTags";
 import { MediaPreviewModal } from "./components/MediaPreviewModal";
 import { motion, AnimatePresence } from "motion/react";
 import { LogoConceptsEntry } from "./pages/LogoConceptsEntry";
+import { MainAppContent } from "./components/layout/MainAppContent";
 
 // Custom Hooks
 import { useAuth } from "./contexts/AuthContext";

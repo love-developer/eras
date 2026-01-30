@@ -1,12 +1,18 @@
-import React, { Component, ReactNode } from 'react';
-import { AlertTriangle, RefreshCw, Home, Bug } from 'lucide-react';
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { logger } from '../utils/logger';
+import React, { Component, ReactNode } from "react";
+import { AlertTriangle, RefreshCw, Home, Bug } from "lucide-react";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { logger } from "../utils/logger";
 
 /**
  * 🛡️ ENHANCED ERROR BOUNDARY - PHASE 0: PRODUCTION STABILIZATION
- * 
+ *
  * Improvements over standard ErrorBoundary:
  * - Contextual error messages based on component
  * - User-friendly fallback UI
@@ -41,32 +47,34 @@ export class EnhancedErrorBoundary extends Component<
       hasError: false,
       error: null,
       errorInfo: null,
-      errorCount: 0
+      errorCount: 0,
     };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<EnhancedErrorBoundaryState> {
+  static getDerivedStateFromError(
+    error: Error,
+  ): Partial<EnhancedErrorBoundaryState> {
     return {
       hasError: true,
-      error
+      error,
     };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     const { context, onError } = this.props;
-    
+
     // Log error with context
-    logger.error(`Error in ${context || 'application'}:`, {
+    logger.error(`Error in ${context || "application"}:`, {
       error: error.message,
       stack: error.stack,
       componentStack: errorInfo.componentStack,
-      errorCount: this.state.errorCount + 1
+      errorCount: this.state.errorCount + 1,
     });
 
     // Update error count
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       errorInfo,
-      errorCount: prevState.errorCount + 1
+      errorCount: prevState.errorCount + 1,
     }));
 
     // Call custom error handler if provided
@@ -93,10 +101,10 @@ export class EnhancedErrorBoundary extends Component<
       //     userAgent: navigator.userAgent
       //   })
       // });
-      
-      logger.info('Error reported (reporting system not yet implemented)');
+
+      logger.info("Error reported (reporting system not yet implemented)");
     } catch (reportError) {
-      logger.warn('Failed to report error:', reportError);
+      logger.warn("Failed to report error:", reportError);
     }
   };
 
@@ -105,14 +113,14 @@ export class EnhancedErrorBoundary extends Component<
   };
 
   handleGoHome = () => {
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   handleReset = () => {
     this.setState({
       hasError: false,
       error: null,
-      errorInfo: null
+      errorInfo: null,
     });
   };
 
@@ -121,31 +129,40 @@ export class EnhancedErrorBoundary extends Component<
     const { error } = this.state;
 
     // Context-specific error messages
-    const contextMessages: Record<string, { title: string; description: string }> = {
+    const contextMessages: Record<
+      string,
+      { title: string; description: string }
+    > = {
       Dashboard: {
-        title: 'Dashboard Error',
-        description: 'We encountered an issue loading your capsules. Your data is safe, but we need to reload the dashboard.'
+        title: "Dashboard Error",
+        description:
+          "We encountered an issue loading your capsules. Your data is safe, but we need to reload the dashboard.",
       },
       CapsuleCreation: {
-        title: 'Capsule Creation Error',
-        description: 'Something went wrong while creating your capsule. Your progress may have been saved as a draft.'
+        title: "Capsule Creation Error",
+        description:
+          "Something went wrong while creating your capsule. Your progress may have been saved as a draft.",
       },
       Media: {
-        title: 'Media Error',
-        description: 'We had trouble processing your media files. Please try uploading them again.'
+        title: "Media Error",
+        description:
+          "We had trouble processing your media files. Please try uploading them again.",
       },
       Vault: {
-        title: 'Vault Error',
-        description: 'We encountered an issue accessing your vault. Your files are safe.'
+        title: "Vault Error",
+        description:
+          "We encountered an issue accessing your vault. Your files are safe.",
       },
       Achievements: {
-        title: 'Achievements Error',
-        description: 'We had trouble loading your achievements. They\'re still there, just temporarily hidden.'
+        title: "Achievements Error",
+        description:
+          "We had trouble loading your achievements. They're still there, just temporarily hidden.",
       },
       Profile: {
-        title: 'Profile Error',
-        description: 'We encountered an issue with your profile. Please try again.'
-      }
+        title: "Profile Error",
+        description:
+          "We encountered an issue with your profile. Please try again.",
+      },
     };
 
     const contextMessage = context ? contextMessages[context] : null;
@@ -156,8 +173,9 @@ export class EnhancedErrorBoundary extends Component<
 
     // Default error message
     return {
-      title: 'Something Went Wrong',
-      description: 'We encountered an unexpected error. Don\'t worry, your data is safe.'
+      title: "Something Went Wrong",
+      description:
+        "We encountered an unexpected error. Don't worry, your data is safe.",
     };
   }
 
@@ -172,7 +190,7 @@ export class EnhancedErrorBoundary extends Component<
       }
 
       const { title, description } = this.getErrorMessage();
-      const isDev = window.location.hostname === 'localhost';
+      const isDev = window.location.hostname === "localhost";
 
       return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-50 to-gray-100">
@@ -193,8 +211,9 @@ export class EnhancedErrorBoundary extends Component<
               {errorCount > 3 && (
                 <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <p className="text-sm text-yellow-800">
-                    <strong>Note:</strong> This error has occurred {errorCount} times. 
-                    Consider clearing your browser cache or contacting support.
+                    <strong>Note:</strong> This error has occurred {errorCount}{" "}
+                    times. Consider clearing your browser cache or contacting
+                    support.
                   </p>
                 </div>
               )}
@@ -264,7 +283,7 @@ export class EnhancedErrorBoundary extends Component<
               {/* Report bug link */}
               <div className="text-center">
                 <a
-                  href={`mailto:support@erastimecapsule.com?subject=Bug Report: ${encodeURIComponent(error?.message || 'Error')}&body=${encodeURIComponent(`Error Details:\n\nContext: ${this.props.context}\nError: ${error?.message}\nTimestamp: ${new Date().toISOString()}\n\nPlease describe what you were doing when this error occurred:`)}`}
+                  href={`mailto:support@erastimecapsule.com?subject=Bug Report: ${encodeURIComponent(error?.message || "Error")}&body=${encodeURIComponent(`Error Details:\n\nContext: ${this.props.context}\nError: ${error?.message}\nTimestamp: ${new Date().toISOString()}\n\nPlease describe what you were doing when this error occurred:`)}`}
                   className="text-sm text-gray-500 hover:text-gray-700 inline-flex items-center gap-1"
                 >
                   <Bug className="w-3 h-3" />
@@ -293,7 +312,11 @@ export function DashboardErrorBoundary({ children }: { children: ReactNode }) {
   );
 }
 
-export function CapsuleCreationErrorBoundary({ children }: { children: ReactNode }) {
+export function CapsuleCreationErrorBoundary({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <EnhancedErrorBoundary context="CapsuleCreation">
       {children}
@@ -303,21 +326,21 @@ export function CapsuleCreationErrorBoundary({ children }: { children: ReactNode
 
 export function MediaErrorBoundary({ children }: { children: ReactNode }) {
   return (
-    <EnhancedErrorBoundary context="Media">
-      {children}
-    </EnhancedErrorBoundary>
+    <EnhancedErrorBoundary context="Media">{children}</EnhancedErrorBoundary>
   );
 }
 
 export function VaultErrorBoundary({ children }: { children: ReactNode }) {
   return (
-    <EnhancedErrorBoundary context="Vault">
-      {children}
-    </EnhancedErrorBoundary>
+    <EnhancedErrorBoundary context="Vault">{children}</EnhancedErrorBoundary>
   );
 }
 
-export function AchievementsErrorBoundary({ children }: { children: ReactNode }) {
+export function AchievementsErrorBoundary({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <EnhancedErrorBoundary context="Achievements">
       {children}
@@ -327,8 +350,6 @@ export function AchievementsErrorBoundary({ children }: { children: ReactNode })
 
 export function ProfileErrorBoundary({ children }: { children: ReactNode }) {
   return (
-    <EnhancedErrorBoundary context="Profile">
-      {children}
-    </EnhancedErrorBoundary>
+    <EnhancedErrorBoundary context="Profile">{children}</EnhancedErrorBoundary>
   );
 }
