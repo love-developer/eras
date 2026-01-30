@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { getThemeConfig } from './ThemeRegistry';
 import { Gift, Lock } from 'lucide-react';
 import { toast } from 'sonner';
-import { getOptimalParticleCount, getOptimalDuration } from '@/utils/performance';
+import { getOptimalParticleCount, getOptimalDuration } from '../../utils/performance';
 import { EternalFlameCeremony } from './ceremonies/EternalFlameCeremony';
 import { SolarReturnCeremony } from './ceremonies/SolarReturnCeremony';
 import { BirthdayCakeCeremony } from './ceremonies/BirthdayCakeCeremony';
