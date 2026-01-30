@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import * as DialogPrimitive from '@radix-ui/react-dialog@1.1.6';
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden@1.1.1';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { Play, Pause, Volume2, VolumeX, Download, RotateCw, X, FileText } from 'lucide-react';
