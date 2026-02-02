@@ -7,8 +7,8 @@ export default function AuthCallback() {
       const { data } = await supabase.auth.getSession();
 
       if (data.session) {
-        // Remove ?code and #home
-        window.location.href = "/home";
+        // Redirect to /home and remove any query/hash
+        window.location.replace("/home");
       } else {
         console.warn("No session found on callback");
       }
