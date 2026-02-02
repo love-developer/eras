@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-import { supabase } from "../../utils/supabase/client"; // adjust path if needed
+import { supabase } from "../../utils/supabase/client";
 
 export default function AuthCallback() {
   useEffect(() => {
     const handleRedirect = async () => {
-      // Grab session from Supabase
       const { data } = await supabase.auth.getSession();
 
       if (data.session) {
-        // Force full URL redirect (remove hash & query params)
+        // Remove ?code and #home
         window.location.href = "/home";
       } else {
         console.warn("No session found on callback");
