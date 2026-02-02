@@ -3,8 +3,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Load from environment variables first, fallback to defaults
-const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL || 'https://apdfvpgaznpqlordkipw.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwZGZ2cGdhem5wcWxvcmRraXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxOTYxMTMsImV4cCI6MjA3NDc3MjExM30.OPxyxHrplKhOD-jrDcyLkpqxju_X7uRtfIAldb0BHZI';
+const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL || 'https://gzggzukbohckdsemlduq.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6Z2d6dWtib2hja2RzZW1sZHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwMjE2MDYsImV4cCI6MjA4NTU5NzYwNn0.Le28zXebjSQAjdHopDwb6UZYh8fo-RnPgVF8VHFN5sw';
 
 export const supabase = createClient(
   supabaseUrl,
