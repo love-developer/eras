@@ -75,6 +75,7 @@ import { VerifyEmail } from "./components/VerifyEmail";
 import { BeneficiaryVerification } from "./components/BeneficiaryVerification";
 import { BeneficiaryVaultAccess } from "./components/BeneficiaryVaultAccess";
 import RequestVerification from "./pages/RequestVerification";
+import AuthCallback from "./pages/auth/callback";
 import { AppLoader } from "./components/AppLoader";
 import { LoadingAnimation } from "./components/LoadingAnimation";
 import { ErasGate } from "./components/ErasGate";
@@ -441,6 +442,11 @@ export default function App() {
     // ✅ NEW: Request verification link page (for beneficiaries who lost their email)
     if (path === "/request-verification") {
       return <RequestVerification />;
+    }
+
+    // ✅ NEW: OAuth callback handler for Google/Apple sign-in
+    if (path === "/auth/callback") {
+      return <AuthCallback />;
     }
 
     if (path === "/legacy-vault/access") {
