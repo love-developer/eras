@@ -680,8 +680,8 @@ export function Auth({ onAuthenticated }) {
                 sessionStorage.setItem(
                   "capsule_just_received_title",
                   capsuleData.capsule.title ||
-                    capsulePendingTitle ||
-                    "Time Capsule",
+                  capsulePendingTitle ||
+                  "Time Capsule",
                 );
 
                 console.log(
@@ -1296,8 +1296,8 @@ export function Auth({ onAuthenticated }) {
                   sessionStorage.setItem(
                     "capsule_just_received_title",
                     capsuleData.capsule.title ||
-                      capsulePendingTitle ||
-                      "Time Capsule",
+                    capsulePendingTitle ||
+                    "Time Capsule",
                   );
 
                   console.log(
@@ -1977,16 +1977,15 @@ export function Auth({ onAuthenticated }) {
       }
 
       const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
+        provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: `${window.location.origin}/auth/callback`, // <-- change here
           queryParams: {
-            access_type: "offline",
-            prompt: "select_account", // Allow account selection without forcing full consent every time
+            access_type: 'offline',
+            prompt: 'select_account',
           },
-          // Skip email confirmation since Google already verified the email
-          skipBrowserRedirect: false,
-        },
+          skipBrowserRedirect: false
+        }
       });
 
       if (error) {
@@ -2168,7 +2167,7 @@ export function Auth({ onAuthenticated }) {
                   variant="outline"
                   className="flex-1"
                   onClick={() =>
-                    handleForgotPassword({ preventDefault: () => {} })
+                    handleForgotPassword({ preventDefault: () => { } })
                   }
                   disabled={isLoading}
                 >
@@ -2689,7 +2688,7 @@ export function Auth({ onAuthenticated }) {
                           }
 
                           // Try sign-in again with fresh state
-                          handleSignIn({ preventDefault: () => {} });
+                          handleSignIn({ preventDefault: () => { } });
                         }}
                       >
                         Try Alternative Sign-In
@@ -2932,12 +2931,11 @@ export function Auth({ onAuthenticated }) {
                       </p>
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div
-                          className={`flex items-center gap-1 ${
-                            validatePassword(formData.password).requirements
+                          className={`flex items-center gap-1 ${validatePassword(formData.password).requirements
                               .minLength
                               ? "text-green-600 dark:text-green-400"
                               : "text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {validatePassword(formData.password).requirements
                             .minLength ? (
@@ -2948,12 +2946,11 @@ export function Auth({ onAuthenticated }) {
                           8+ characters
                         </div>
                         <div
-                          className={`flex items-center gap-1 ${
-                            validatePassword(formData.password).requirements
+                          className={`flex items-center gap-1 ${validatePassword(formData.password).requirements
                               .hasLetter
                               ? "text-green-600 dark:text-green-400"
                               : "text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {validatePassword(formData.password).requirements
                             .hasLetter ? (
@@ -2964,12 +2961,11 @@ export function Auth({ onAuthenticated }) {
                           Letters (A-Z)
                         </div>
                         <div
-                          className={`flex items-center gap-1 ${
-                            validatePassword(formData.password).requirements
+                          className={`flex items-center gap-1 ${validatePassword(formData.password).requirements
                               .hasNumber
                               ? "text-green-600 dark:text-green-400"
                               : "text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {validatePassword(formData.password).requirements
                             .hasNumber ? (
@@ -2980,12 +2976,11 @@ export function Auth({ onAuthenticated }) {
                           Numbers (0-9)
                         </div>
                         <div
-                          className={`flex items-center gap-1 ${
-                            validatePassword(formData.password).requirements
+                          className={`flex items-center gap-1 ${validatePassword(formData.password).requirements
                               .hasSpecial
                               ? "text-green-600 dark:text-green-400"
                               : "text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {validatePassword(formData.password).requirements
                             .hasSpecial ? (
